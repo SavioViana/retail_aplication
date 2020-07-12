@@ -47,4 +47,22 @@ class RentailRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getStatusCar($value)
+    {
+        $qb =  $this->createQueryBuilder('r')
+        ->where("r.car = :val")
+        ->andWhere('r.status = 1')
+        ->setParameter('val', $value)
+        ->getQuery()
+        ->getResult();
+
+        if ( count($qb) >= 1 ) {
+            return 'Locado';
+        } else {
+            return 'Disponivel';
+        }
+        return count($qb);
+    }
+
 }

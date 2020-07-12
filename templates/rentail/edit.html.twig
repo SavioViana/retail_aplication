@@ -1,13 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block title %}Edit Rentail{% endblock %}
+{% block title %}Editar Locação{% endblock %}
 
-{% block body %}
-    <h1>Edit Rentail</h1>
+{% block content %}
+    <h1>Editar Locação</h1>
+    <hr/>
 
-    {{ include('rentail/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('rentail/_form.html.twig', {'button_label': 'Salvar'}) }}
 
-    <a href="{{ path('rentail_index') }}">back to list</a>
+    <a href="{{ path('rentail_index') }}">Voltar para listagem</a>
 
     {{ include('rentail/_delete_form.html.twig') }}
 {% endblock %}

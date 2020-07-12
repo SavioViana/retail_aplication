@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Car;
 use App\Form\CarType;
+use App\Entity\Rentail;
 use App\Repository\CarRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\RentailRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/car")
@@ -22,8 +24,14 @@ class CarController extends AbstractController
      */
     public function index(CarRepository $carRepository): Response
     {
+
+        $cars = $carRepository->findAll();
+        foreach ($cars as  $car) {
+           $car->status_car = $this->getDoctrine()
+           ->getRepository(Rentail::class)->getStatusCar($car->getId() );
+        }
         return $this->render('car/index.html.twig', [
-            'cars' => $carRepository->findAll(),
+            'cars' => $cars
         ]);
     }
 
@@ -60,8 +68,13 @@ class CarController extends AbstractController
      */
     public function show(Car $car): Response
     {
+       
+        $statusCar = $this->getDoctrine()
+        ->getRepository(Rentail::class)->getStatusCar($car->getId() );
+        
         return $this->render('car/show.html.twig', [
             'car' => $car,
+            'status_car' => $statusCar,
         ]);
     }
 

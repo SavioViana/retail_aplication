@@ -12,6 +12,7 @@
                 <th>Marca</th>
                 <th>Modelo</th>
                 <th>Ano</th>
+                <th>Status</th>
                 <th>Opções</th>
             </tr>
         </thead>
@@ -22,6 +23,9 @@
                 <td>{{ car.brand.name }}</td>
                 <td>{{ car.model }}</td>
                 <td>{{ car.year }}</td>
+                <td>
+                   {{ car.status_car }}
+                </td>
                 <td>
                     <a class="btn btn-success "  href="{{ path('car_show', {'id': car.id}) }}">mostrar</a>
                     <a class="btn btn-primary "  href="{{ path('car_edit', {'id': car.id}) }}">editar</a>

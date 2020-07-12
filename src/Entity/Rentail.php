@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\RentailRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=RentailRepository::class)
@@ -19,11 +21,13 @@ class Rentail
 
     /**
      * @ORM\ManyToOne(targetEntity=Car::class, inversedBy="rentails")
+     * @Assert\NotBlank
      */
     private $car;
 
     /**
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="rentails")
+     * @Assert\NotBlank
      */
     private $client;
 
@@ -31,6 +35,7 @@ class Rentail
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank
      */
     private $date_rentail;
 
@@ -41,6 +46,7 @@ class Rentail
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\NotBlank
      */
     private $status;
 
@@ -78,7 +84,7 @@ class Rentail
         return $this->date_rentail;
     }
 
-    public function setDateRentail(\DateTimeInterface $date_rentail): self
+    public function setDateRentail(?\DateTimeInterface $date_rentail): self
     {
         $this->date_rentail = $date_rentail;
 

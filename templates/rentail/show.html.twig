@@ -12,23 +12,23 @@
                 <td>{{ rentail.id }}</td>
             </tr>
             <tr>
-                <th>Date_rentail</th>
-                <td>{{ rentail.dateRentail ? rentail.dateRentail|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Data de Locação</th>
+                <td>{{ rentail.dateRentail ? rentail.dateRentail|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Date_devolution</th>
-                <td>{{ rentail.dateDevolution ? rentail.dateDevolution|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Data de Devolução</th>
+                <td>{{ rentail.dateDevolution ? rentail.dateDevolution|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Status</th>
-                <td>{{ rentail.status ? 'Yes' : 'No' }}</td>
+                <td>{{ rentail.status ? 'Locado' : 'devolvido' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('rentail_index') }}">back to list</a>
+    <a href="{{ path('rentail_index') }}">Voltar para listagem</a>
 
-    <a href="{{ path('rentail_edit', {'id': rentail.id}) }}">edit</a>
+    <a href="{{ path('rentail_edit', {'id': rentail.id}) }}" class="btn btn-primary">editar</a>
 
     {{ include('rentail/_delete_form.html.twig') }}
 {% endblock %}

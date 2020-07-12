@@ -9,19 +9,23 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Date_rentail</th>
-                <th>Date_devolution</th>
+                <th>Carro</th>
+                <th>Cliente</th>
+                <th>Data Locação</th>
+                <th>Data Devolução</th>
                 <th>Status</th>
-                <th>actions</th>
+                <th>Opções</th>
             </tr>
         </thead>
         <tbody>
         {% for rentail in rentails %}
             <tr>
                 <td>{{ rentail.id }}</td>
-                <td>{{ rentail.dateRentail ? rentail.dateRentail|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ rentail.dateDevolution ? rentail.dateDevolution|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ rentail.status ? 'Yes' : 'No' }}</td>
+                <td>{{ rentail.getCar().getBrand().name }} {{ rentail.getCar().model }} {{ rentail.getCar().getYear() }}</td>
+                <td>{{ rentail.getClient().name }}</td>
+                <td>{{ rentail.dateRentail ? rentail.dateRentail|date('d-m-Y') : '' }}</td>
+                <td>{{ rentail.dateDevolution ? rentail.dateDevolution|date('d-m-Y') : '' }}</td>
+                <td>{{ rentail.status ? 'Locado' : 'Devolvido' }}</td>
                 <td>
                     <a class="btn btn-success" href="{{ path('rentail_show', {'id': rentail.id}) }}">mostrar</a>
                     <a class="btn btn-primary" href="{{ path('rentail_edit', {'id': rentail.id}) }}">editar</a>
@@ -35,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('rentail_new') }} " class="btn btn-primary">Locar Carro</a>
+    <a href="{{ path('rentail_new') }} " class="btn btn-primary float-right">Locar Carro</a>
 {% endblock %}

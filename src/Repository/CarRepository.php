@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Car;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Car|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +48,8 @@ class CarRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+
 }
+// SELECT DISTINCT car.*, rentail.status FROM `car` RIGHT JOIN rentail on rentail.car_id = car.id where (rentail.status = 1)

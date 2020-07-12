@@ -1,4 +1,22 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-success float-right">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {# {{ form_widget(form) }} #}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.car) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.client) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.date_rentail) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.date_devolution) }}
+            
+        </div>
+        <div class="col-md-12">
+            {{ form_row(form.status) }}
+        </div>
+    </div>
+    <button class="btn btn-success float-right">{{ button_label|default('Salvar') }}</button>
 {{ form_end(form) }}

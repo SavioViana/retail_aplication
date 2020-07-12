@@ -129,4 +129,12 @@ class Car
 
         return $this;
     }
+
+    public function is_retail()
+    {
+        $carRepository = $this->getDoctrine()
+        ->getRepository(self::class)->checkCarStatus($this->getId() );
+
+        dd(carRepository());
+    }
 }
