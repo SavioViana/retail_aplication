@@ -24,7 +24,7 @@
                 <td>{{ car.model }}</td>
                 <td>{{ car.year }}</td>
                 <td>
-                   {{ car.status_car }}
+                   {{ (car.status) ? 'Locado' : 'Disponivel' }}
                 </td>
                 <td>
                     <a class="btn btn-success "  href="{{ path('car_show', {'id': car.id}) }}">mostrar</a>

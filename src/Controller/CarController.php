@@ -26,10 +26,10 @@ class CarController extends AbstractController
     {
 
         $cars = $carRepository->findAll();
-        foreach ($cars as  $car) {
-           $car->status_car = $this->getDoctrine()
-           ->getRepository(Rentail::class)->getStatusCar($car->getId() );
-        }
+        // foreach ($cars as  $car) {
+        //    $car->status_car = $this->getDoctrine()
+        //    ->getRepository(Rentail::class)->getStatusCar($car->getId() );
+        // }
         return $this->render('car/index.html.twig', [
             'cars' => $cars
         ]);
@@ -46,6 +46,7 @@ class CarController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $car->setStatus(false);
             $entityManager->persist($car);
             $entityManager->flush();
 
@@ -69,12 +70,12 @@ class CarController extends AbstractController
     public function show(Car $car): Response
     {
        
-        $statusCar = $this->getDoctrine()
-        ->getRepository(Rentail::class)->getStatusCar($car->getId() );
+        // $statusCar = $this->getDoctrine()
+        // ->getRepository(Rentail::class)->getStatusCar($car->getId() );
         
         return $this->render('car/show.html.twig', [
             'car' => $car,
-            'status_car' => $statusCar,
+            // 'status_car' => $statusCar,
         ]);
     }
 

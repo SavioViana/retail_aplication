@@ -1,22 +1,44 @@
 {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
     {# {{ form_widget(form) }} #}
-    <div class="row">
-        <div class="col-md-6">
-            {{ form_row(form.car) }}
-        </div>
-        <div class="col-md-6">
-            {{ form_row(form.client) }}
-        </div>
-        <div class="col-md-6">
-            {{ form_row(form.date_rentail) }}
-        </div>
-        <div class="col-md-6">
-            {{ form_row(form.date_devolution) }}
-            
-        </div>
-        <div class="col-md-12">
-            {{ form_row(form.status) }}
-        </div>
-    </div>
+    {% if not rentail.getId()   %}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.car) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.client) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.date_rentail) }}
+                </div>
+            </div>
+     {% else  %}
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Carro</th>
+                        <td>{{ rentail.getCar().getBrand().name }} {{ rentail.getCar().model }} {{ rentail.getCar().getYear() }}</td>
+                    </tr>
+                    <tr>
+                        <th>Cliente</th>
+                        <td>{{ rentail.getClient().name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Data de Locação</th>
+                        <td>{{ rentail.dateRentail ? rentail.dateRentail|date('d-m-Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>{{ rentail.getCar().status ? 'Locado' : 'devolvido' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {% if form.date_devolution is defined %}
+                <div class="col-md-6">
+                    {{ form_row(form.date_devolution) }}
+                </div>
+            {% endif %}
+
+     {% endif %}
     <button class="btn btn-success float-right">{{ button_label|default('Salvar') }}</button>
 {{ form_end(form) }}

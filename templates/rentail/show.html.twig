@@ -3,13 +3,21 @@
 {% block title %}Rentail{% endblock %}
 
 {% block content %}
-    <h1>Rentail</h1>
+    <h1>Locação</h1>
 
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ rentail.id }}</td>
+            </tr>
+            <tr>
+                <th>Carro</th>
+                <td>{{ rentail.getCar().getBrand().name }} {{ rentail.getCar().model }} {{ rentail.getCar().getYear() }}</td>
+            </tr>
+            <tr>
+                <th>Cliente</th>
+                <td>{{ rentail.getClient().name }}</td>
             </tr>
             <tr>
                 <th>Data de Locação</th>
@@ -21,14 +29,16 @@
             </tr>
             <tr>
                 <th>Status</th>
-                <td>{{ rentail.status ? 'Locado' : 'devolvido' }}</td>
+                <td>{{ rentail.getCar().status ? 'Locado' : 'devolvido' }}</td>
             </tr>
         </tbody>
     </table>
 
     <a href="{{ path('rentail_index') }}">Voltar para listagem</a>
 
-    <a href="{{ path('rentail_edit', {'id': rentail.id}) }}" class="btn btn-primary">editar</a>
+    {% if  rentail.dateDevolution  == '' %}
+        <a href="{{ path('rentail_edit', {'id': rentail.id}) }}" class="btn btn-primary float-right ml-3">Devolver</a>
+    {% endif %}
 
     {{ include('rentail/_delete_form.html.twig') }}
 {% endblock %}

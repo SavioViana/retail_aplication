@@ -44,6 +44,10 @@ class Car
      */
     private $year;
 
+     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $status;
 
     /**
      * @ORM\OneToMany(targetEntity=Rentail::class, mappedBy="car")
@@ -137,4 +141,17 @@ class Car
 
         dd(carRepository());
     }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status = false ): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+    
 }

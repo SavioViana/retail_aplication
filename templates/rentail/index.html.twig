@@ -25,10 +25,12 @@
                 <td>{{ rentail.getClient().name }}</td>
                 <td>{{ rentail.dateRentail ? rentail.dateRentail|date('d-m-Y') : '' }}</td>
                 <td>{{ rentail.dateDevolution ? rentail.dateDevolution|date('d-m-Y') : '' }}</td>
-                <td>{{ rentail.status ? 'Locado' : 'Devolvido' }}</td>
+                <td>{{ rentail.getCar().status ? 'Locada' : 'Devolvida' }}</td>
                 <td>
-                    <a class="btn btn-success" href="{{ path('rentail_show', {'id': rentail.id}) }}">mostrar</a>
-                    <a class="btn btn-primary" href="{{ path('rentail_edit', {'id': rentail.id}) }}">editar</a>
+                    <a class="btn btn-success" href="{{ path('rentail_show', {'id': rentail.id}) }}">Mostrar</a>
+                    {% if  rentail.dateDevolution  == '' %}
+                    <a class="btn btn-primary" href="{{ path('rentail_edit', {'id': rentail.id}) }}">Devolver</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

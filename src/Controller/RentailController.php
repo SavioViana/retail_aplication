@@ -38,6 +38,9 @@ class RentailController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $car = $rentail->getCar();
+            $car->setStatus(true);
+            $rentail->setCar($car);
             $entityManager->persist($rentail);
             $entityManager->flush();
 
@@ -73,6 +76,9 @@ class RentailController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $car = $rentail->getCar();
+            $car->setStatus(false);
+            $rentail->setCar($car);
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash(
@@ -95,6 +101,9 @@ class RentailController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$rentail->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+            $car = $rentail->getCar();
+            $car->setStatus(false);
+            $rentail->setCar($car);
             $entityManager->remove($rentail);
             $entityManager->flush();
         }
