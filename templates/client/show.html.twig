@@ -12,7 +12,7 @@
                 <td>{{ client.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>Nome</th>
                 <td>{{ client.name }}</td>
             </tr>
             <tr>
@@ -20,19 +20,19 @@
                 <td>{{ client.email }}</td>
             </tr>
             <tr>
-                <th>Birth</th>
-                <td>{{ client.birth ? client.birth|date('Y-m-d') : '' }}</td>
+                <th>Data de Nascimento</th>
+                <td>{{ client.birth ? client.birth|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Cpf</th>
+                <th>CPF</th>
                 <td>{{ client.cpf }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('client_index') }}">back to list</a>
+    <a href="{{ path('client_index') }}">Voltar para listagem</a>
 
-    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
+    <a href="{{ path('client_edit', {'id': client.id}) }}" class="btn btn-primary">Editar</a>
 
     {{ include('client/_delete_form.html.twig') }}
 {% endblock %}

@@ -15,20 +15,18 @@ class CarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null, [
-                'attr' => ['class' => 'form-control']
-            ])
-            ->add('board', null, [
-                'attr' => ['class' => 'form-control']
-            ])
-            ->add('year', null, [
-                'attr' => ['class' => 'form-control']
-            ])
             ->add('brand',  EntityType::class, [
                 'class' => Brand::class,
                 'choice_label' => 'name',
-                'attr' => ['class' => 'form-control']
+                'label' => 'Marca'
+            ])
+            ->add('model', null, [
+                'label' => 'Modelo'
+            ])
+            ->add('year', null, [
+                'label' => 'Ano'
             ]);
+            
     }
 
     public function configureOptions(OptionsResolver $resolver)

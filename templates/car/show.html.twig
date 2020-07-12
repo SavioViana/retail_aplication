@@ -12,23 +12,23 @@
                 <td>{{ car.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
-                <td>{{ car.name }}</td>
+                <th>Marca</th>
+                <td>{{ car.brand.name }}</td>
             </tr>
             <tr>
-                <th>Board</th>
-                <td>{{ car.board }}</td>
+                <th>Modelo</th>
+                <td>{{ car.model }}</td>
             </tr>
             <tr>
-                <th>Year</th>
+                <th>Ano</th>
                 <td>{{ car.year }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('car_index') }}">back to list</a>
+    <a href="{{ path('car_index') }}">Voltar para listagem</a>
 
-    <a  class="btn btn-primary"  href="{{ path('car_edit', {'id': car.id}) }}">edit</a>
+    <a  class="btn btn-primary"  href="{{ path('car_edit', {'id': car.id}) }}">Editar</a>
 
     {{ include('car/_delete_form.html.twig') }}
 {% endblock %}

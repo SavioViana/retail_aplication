@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /** 
  * @Security("is_authenticated()")
+ * @Route("/")
  */
 class HomeController extends AbstractController
 {
@@ -18,8 +19,7 @@ class HomeController extends AbstractController
 
     }
     /**
-     * @Route("/", name="home")
-     * @Route("/home", name="home")
+     * @Route("home", name="home")
      * 
      */
     public function index()

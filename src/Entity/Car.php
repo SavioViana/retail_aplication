@@ -6,6 +6,8 @@ use App\Repository\CarRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=CarRepository::class)
@@ -19,13 +21,10 @@ class Car
      */
     private $id;
 
+  
     /**
      * @ORM\Column(type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $model;
 
@@ -35,11 +34,13 @@ class Car
     /**
      * @ORM\ManyToOne(targetEntity=Brand::class, inversedBy="cars")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
      */
     private $brand;
 
     /**
      * @ORM\Column(type="bigint")
+     * @Assert\NotBlank
      */
     private $year;
 
@@ -58,18 +59,6 @@ class Car
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getModel(): ?string

@@ -1,19 +1,19 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Lista de Cliente{% endblock %}
+{% block title %}Lista de Clientes{% endblock %}
 
 {% block content %}
-    <h1>Lista de Cliente</h1>
+    <h1>Lista de Clientes</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Nome</th>
                 <th>Email</th>
-                <th>Birth</th>
-                <th>Cpf</th>
-                <th>actions</th>
+                <th>Data de Nascimente</th>
+                <th>CPF</th>
+                <th>Opções</th>
             </tr>
         </thead>
         <tbody>
@@ -22,11 +22,11 @@
                 <td>{{ client.id }}</td>
                 <td>{{ client.name }}</td>
                 <td>{{ client.email }}</td>
-                <td>{{ client.birth ? client.birth|date('Y-m-d') : '' }}</td>
+                <td>{{ client.birth ? client.birth|date('d-m-Y') : '' }}</td>
                 <td>{{ client.cpf }}</td>
                 <td>
-                    <a href="{{ path('client_show', {'id': client.id}) }}">show</a>
-                    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
+                    <a href="{{ path('client_show', {'id': client.id}) }}" class="btn btn-success">show</a>
+                    <a href="{{ path('client_edit', {'id': client.id}) }}" class="btn btn-primary">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('client_new') }}">Create new</a>
+    <a href="{{ path('client_new') }}" class="btn btn-primary float-right">Novo</a>
 {% endblock %}

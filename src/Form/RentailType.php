@@ -27,7 +27,9 @@ class RentailType extends AbstractType
             ])
             ->add('car',  EntityType::class, [
                 'class' => Car::class,
-                'choice_label' => 'name',
+                'choice_label' => function ($car) {
+                    return  $car->getBrand()->getName() . ' ' . $car->getModel() . ' - ' . $car->getYear();
+                }
             ])
             ->add('client', EntityType::class, [
                 'class' => Client::class,
