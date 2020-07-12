@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Nova Locação{% endblock %}
+
+{% block content %}
+    <h1>Nova Locação</h1>
+
+    {{ include('rentail/_form.html.twig') }}
+
+    <a href="{{ path('rentail_index') }}">voltar para listagem</a>
+{% endblock %}

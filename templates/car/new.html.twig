@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Novo Carro{% endblock %}
+
+{% block content %}
+    <h1>Novo Carro</h1>
+
+    {{ include('car/_form.html.twig') }}
+
+    <a href="{{ path('car_index') }}">Voltar para listagem</a>
+{% endblock %}

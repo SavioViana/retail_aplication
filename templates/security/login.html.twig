@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+<div class="content container pt-5">
+        <div class="row mt-5 pt-5 ">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" class="mb-2">
+                            <h1>Login</h1>
+                            <p>Realize log in para acessar o sistema</p>
+                            <input type="hidden" name="_csrf_token"
+                                    value="{{ csrf_token('authenticate') }}">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="inputEmail" name="email" placeholder="name@example.com" value="{{ last_username }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Senha</label>
+                                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="****">
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-lg btn-primary text-center" type="submit">
+                                    Entrar
+                                </button>
+                            </div>
+                        </form>
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                        {% if app.user %}
+                            <div class="mb-3">
+                                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

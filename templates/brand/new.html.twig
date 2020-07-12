@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}New Brand{% endblock %}
+
+{% block content %}
+    <h1>Cadastro de Nova Marca</h1>
+
+    {{ include('brand/_form.html.twig') }}
+
+    <a href="{{ path('brand_index') }}">Voltar para a listagem</a>
+{% endblock %}

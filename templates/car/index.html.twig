@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Lista de Carros{% endblock %}
+
+{% block content %}
+    <h1>Lista de Carros</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Board</th>
+                <th>Year</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+            <tr>
+                <td>{{ car.id }}</td>
+                <td>{{ car.name }}</td>
+                <td>{{ car.board }}</td>
+                <td>{{ car.year }}</td>
+                <td>
+                    <a class="btn btn-success "  href="{{ path('car_show', {'id': car.id}) }}">mostrar</a>
+                    <a class="btn btn-primary "  href="{{ path('car_edit', {'id': car.id}) }}">editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('car_new') }}" class="btn btn-primary float-right" >Novo</a>
+{% endblock %}
