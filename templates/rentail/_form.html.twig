@@ -1,3 +1,6 @@
+<div class="card">
+    <div class="card-body">
+
 {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
     {# {{ form_widget(form) }} #}
     {% if not rentail.getId()   %}
@@ -29,7 +32,7 @@
                     </tr>
                     <tr>
                         <th>Status</th>
-                        <td>{{ rentail.getCar().status ? 'Locado' : 'devolvido' }}</td>
+                        <td><span class="badge badge-{{ (rentail.getCar().status) ? 'warning' : 'success' }}"> {{ (rentail.getCar().status) ? 'Locado' : 'Devolvida' }}</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -42,3 +45,7 @@
      {% endif %}
     <button class="btn btn-success float-right">{{ button_label|default('Salvar') }}</button>
 {{ form_end(form) }}
+    <a href="{{ path('rentail_index') }}">voltar para listagem</a>
+
+    </div>
+</div>

@@ -4,35 +4,39 @@
 
 {% block content %}
     <h1>Cliente</h1>
+<div class="card">
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ client.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nome</th>
+                    <td>{{ client.name }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ client.email }}</td>
+                </tr>
+                <tr>
+                    <th>Data de Nascimento</th>
+                    <td>{{ client.birth ? client.birth|date('d-m-Y') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>CPF</th>
+                    <td>{{ client.cpf }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ client.id }}</td>
-            </tr>
-            <tr>
-                <th>Nome</th>
-                <td>{{ client.name }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ client.email }}</td>
-            </tr>
-            <tr>
-                <th>Data de Nascimento</th>
-                <td>{{ client.birth ? client.birth|date('d-m-Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>CPF</th>
-                <td>{{ client.cpf }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <a href="{{ path('client_index') }}">Voltar para listagem</a>
 
-    <a href="{{ path('client_index') }}">Voltar para listagem</a>
+        <a href="{{ path('client_edit', {'id': client.id}) }}" class="btn btn-primary float-right ml-3">Editar</a>
 
-    <a href="{{ path('client_edit', {'id': client.id}) }}" class="btn btn-primary">Editar</a>
+        {{ include('client/_delete_form.html.twig') }}
 
-    {{ include('client/_delete_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}

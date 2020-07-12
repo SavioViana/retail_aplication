@@ -94,7 +94,7 @@ class Client
         return $this->birth;
     }
 
-    public function setBirth(\DateTimeInterface $birth): self
+    public function setBirth(?\DateTimeInterface $birth): self
     {
         $this->birth = $birth;
 

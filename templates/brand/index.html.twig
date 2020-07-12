@@ -3,35 +3,47 @@
 {% block title %}Lista de Marcas{% endblock %}
 
 {% block content %}
-    <h1>Lista de Marcas</h1>
+<div class="row">
+    <div class="col-6">
+        <h1 class="text-uppercase">Lista de Marcas</h1>
+    </div>
+    <div class="col-6">
+         <a href="{{ path('brand_new') }}" class="btn btn-primary float-right" >Novo</a>
+    </div>
+</div>   
     
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nome</th>
-                <th>Decrição</th>
-                <th>Opções</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for brand in brands %}
-            <tr>
-                <td>{{ brand.id }}</td>
-                <td>{{ brand.name }}</td>
-                <td>{{ brand.label }}</td>
-                <td>
-                    <a  class="btn btn-success " href="{{ path('brand_show', {'id': brand.id}) }}">Mostrar</a>
-                    <a  class="btn btn-primary " href="{{ path('brand_edit', {'id': brand.id}) }}">Editar</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('brand_new') }}" class="btn btn-primary float-right" >Novo</a>
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">    
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Decrição</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for brand in brands %}
+                    <tr>
+                        <td>{{ brand.id }}</td>
+                        <td>{{ brand.name }}</td>
+                        <td>{{ brand.label }}</td>
+                        <td>
+                            <a  class="btn btn-success " href="{{ path('brand_show', {'id': brand.id}) }}">Mostrar</a>
+                            <a  class="btn btn-primary " href="{{ path('brand_edit', {'id': brand.id}) }}">Editar</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+   
 {% endblock %}

@@ -5,40 +5,46 @@
 {% block content %}
     <h1>Locação</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ rentail.id }}</td>
-            </tr>
-            <tr>
-                <th>Carro</th>
-                <td>{{ rentail.getCar().getBrand().name }} {{ rentail.getCar().model }} {{ rentail.getCar().getYear() }}</td>
-            </tr>
-            <tr>
-                <th>Cliente</th>
-                <td>{{ rentail.getClient().name }}</td>
-            </tr>
-            <tr>
-                <th>Data de Locação</th>
-                <td>{{ rentail.dateRentail ? rentail.dateRentail|date('d-m-Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Data de Devolução</th>
-                <td>{{ rentail.dateDevolution ? rentail.dateDevolution|date('d-m-Y') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ rentail.getCar().status ? 'Locado' : 'devolvido' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="card">
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ rentail.id }}</td>
+                </tr>
+                <tr>
+                    <th>Carro</th>
+                    <td>{{ rentail.getCar().getBrand().name }} {{ rentail.getCar().model }} {{ rentail.getCar().getYear() }}</td>
+                </tr>
+                <tr>
+                    <th>Cliente</th>
+                    <td>{{ rentail.getClient().name }}</td>
+                </tr>
+                <tr>
+                    <th>Data de Locação</th>
+                    <td>{{ rentail.dateRentail ? rentail.dateRentail|date('d-m-Y') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Data de Devolução</th>
+                    <td>{{ rentail.dateDevolution ? rentail.dateDevolution|date('d-m-Y') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>
+                        <span class="badge badge-{{ (rentail.getCar().status) ? 'warning' : 'success' }}"> {{ (rentail.getCar().status) ? 'Locado' : 'Devolvida' }}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <a href="{{ path('rentail_index') }}">Voltar para listagem</a>
+        <a href="{{ path('rentail_index') }}">Voltar para listagem</a>
 
-    {% if  rentail.dateDevolution  == '' %}
-        <a href="{{ path('rentail_edit', {'id': rentail.id}) }}" class="btn btn-primary float-right ml-3">Devolver</a>
-    {% endif %}
+        {% if  rentail.dateDevolution  == '' %}
+            <a href="{{ path('rentail_edit', {'id': rentail.id}) }}" class="btn btn-primary float-right ml-3">Devolver</a>
+        {% endif %}
 
-    {{ include('rentail/_delete_form.html.twig') }}
+        {{ include('rentail/_delete_form.html.twig') }}
+    </div>
+</div>        
 {% endblock %}

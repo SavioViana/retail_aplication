@@ -1,4 +1,11 @@
-{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-success float-right">{{ button_label|default('Salvar') }}</button>
-{{ form_end(form) }}
+<div class="card">
+    <div class="card-body">
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-success float-right">{{ button_label|default('Salvar') }}</button>
+        {{ form_end(form) }}
+    
+        <a href="{{ path('car_index') }}">Voltar para listagem</a>
+
+    </div>
+</div>

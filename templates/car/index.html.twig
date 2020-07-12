@@ -3,41 +3,53 @@
 {% block title %}Lista de Carros{% endblock %}
 
 {% block content %}
-    <h1>Lista de Carros</h1>
+    <div class="row">
+        <div class="col-6">
+            <h1 class="text-uppercase" style="width=auto;">Lista de Carros</h1>
+        </div>
+        <div class="col-6">
+            <a href="{{ path('car_new') }}" class="btn btn-primary float-right"  >Novo</a>
+        </div>
+    </div>    
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>Ano</th>
-                <th>Status</th>
-                <th>Opções</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for car in cars %}
-            <tr>
-                <td>{{ car.id }}</td>
-                <td>{{ car.brand.name }}</td>
-                <td>{{ car.model }}</td>
-                <td>{{ car.year }}</td>
-                <td>
-                   {{ (car.status) ? 'Locado' : 'Disponivel' }}
-                </td>
-                <td>
-                    <a class="btn btn-success "  href="{{ path('car_show', {'id': car.id}) }}">mostrar</a>
-                    <a class="btn btn-primary "  href="{{ path('car_edit', {'id': car.id}) }}">editar</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Ano</th>
+                        <th>Status</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for car in cars %}
+                    <tr>
+                        <td>{{ car.id }}</td>
+                        <td>{{ car.brand.name }}</td>
+                        <td>{{ car.model }}</td>
+                        <td>{{ car.year }}</td>
+                        <td>
+                            <span class="badge badge-{{ (car.status) ? 'warning' : 'success' }}"> {{ (car.status) ? 'Locado' : 'Disponivel' }}</span>
+                        </td>
+                        <td>
+                            <a class="btn btn-success "  href="{{ path('car_show', {'id': car.id}) }}">mostrar</a>
+                            <a class="btn btn-primary "  href="{{ path('car_edit', {'id': car.id}) }}">editar</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-    <a href="{{ path('car_new') }}" class="btn btn-primary float-right" >Novo</a>
 {% endblock %}

@@ -3,39 +3,51 @@
 {% block title %}Lista de Clientes{% endblock %}
 
 {% block content %}
-    <h1>Lista de Clientes</h1>
+    <div class="row">
+        <div class="col-6">
+            <h1 class="text-uppercase">Lista de Clientes</h1>
+        </div>
+        <div class="col-6">
+            <a href="{{ path('client_new') }}" class="btn btn-primary float-right">Novo</a>
+        </div>
+    </div>  
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Data de Nascimente</th>
-                <th>CPF</th>
-                <th>Opções</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for client in clients %}
-            <tr>
-                <td>{{ client.id }}</td>
-                <td>{{ client.name }}</td>
-                <td>{{ client.email }}</td>
-                <td>{{ client.birth ? client.birth|date('d-m-Y') : '' }}</td>
-                <td>{{ client.cpf }}</td>
-                <td>
-                    <a href="{{ path('client_show', {'id': client.id}) }}" class="btn btn-success">show</a>
-                    <a href="{{ path('client_edit', {'id': client.id}) }}" class="btn btn-primary">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('client_new') }}" class="btn btn-primary float-right">Novo</a>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">  
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Data de Nascimente</th>
+                            <th>CPF</th>
+                            <th>Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for client in clients %}
+                        <tr>
+                            <td>{{ client.id }}</td>
+                            <td>{{ client.name }}</td>
+                            <td>{{ client.email }}</td>
+                            <td>{{ client.birth ? client.birth|date('d-m-Y') : '' }}</td>
+                            <td>{{ client.cpf }}</td>
+                            <td>
+                                <a href="{{ path('client_show', {'id': client.id}) }}" class="btn btn-success">Mostrar</a>
+                                <a href="{{ path('client_edit', {'id': client.id}) }}" class="btn btn-primary">Editar</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+   
 {% endblock %}

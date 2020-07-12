@@ -22,7 +22,7 @@ class CarController extends AbstractController
     /**
      * @Route("/", name="car_index", methods={"GET"})
      */
-    public function index(CarRepository $carRepository): Response
+    public function index( CarRepository $carRepository): Response
     {
 
         $cars = $carRepository->findAll();
