@@ -22,7 +22,7 @@ class UserFixtures extends Fixture
         // $manager->persist($product);
 
         $user = new User();
-        $user->setEmail('admin@admin');
+        $user->setEmail('admin@volvox.com.br');
         $user->setPassword($this->passwordEncoder->encodePassword($user, 'admin'));
         // $user->setRoles($roles);
         
