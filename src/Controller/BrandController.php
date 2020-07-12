@@ -9,9 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/brand")
+ * @Security("is_authenticated()")
  */
 class BrandController extends AbstractController
 {
@@ -41,7 +43,7 @@ class BrandController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Marca cadastrada com sucesso'
+                'Cadastro concluido com sucesso'
             );
 
             return $this->redirectToRoute('brand_index');
@@ -74,6 +76,10 @@ class BrandController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'success',
+                'Alteração concluida com sucesso'
+            );
             return $this->redirectToRoute('brand_index');
         }
 

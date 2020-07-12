@@ -9,9 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/client")
+ * @Security("is_authenticated()")
  */
 class ClientController extends AbstractController
 {
@@ -39,6 +41,10 @@ class ClientController extends AbstractController
             $entityManager->persist($client);
             $entityManager->flush();
 
+            $this->addFlash(
+                'success',
+                'Cadastro concluido com sucesso'
+            );
             return $this->redirectToRoute('client_index');
         }
 
@@ -69,6 +75,10 @@ class ClientController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'success',
+                'Alteração concluida com sucesso'
+            );
             return $this->redirectToRoute('client_index');
         }
 
