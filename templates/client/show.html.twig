@@ -30,6 +30,14 @@
                 </tr>
             </tbody>
         </table>
+        <h5>Veiculos locados: </h5>
+        <ul>
+            {% for retail in currentRentails %}
+                <li>{{ retail.getCar().getBrand().name }} {{ retail.getCar().model  }} {{ retail.getCar().getYear()  }} - ( {{ retail.dateRentail|date('d-m-Y') }} ) </li>
+            {% else %}
+                <p class="text-muted">Nenhuam carro locado no momento</p>
+            {% endfor %}
+        </ul>
 
         <a href="{{ path('client_index') }}">Voltar para listagem</a>
 

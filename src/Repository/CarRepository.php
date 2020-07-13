@@ -20,36 +20,30 @@ class CarRepository extends ServiceEntityRepository
         parent::__construct($registry, Car::class);
     }
 
-    // /**
-    //  * @return Car[] Returns an array of Car objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function getCount()
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('count(c.id)')
             ->getQuery()
-            ->getResult()
+            ->getSingleScalarResult()
         ;
     }
+   
+   /**
+    * 0 Traz as somoas dos disponiveis
+    * 1 Traz as somoas dos locados
     */
-
-    /*
-    public function findOneBySomeField($value): ?Car
+    public function getCountRentail( $statusRentail = 0)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
+            ->select('count(c.id)')
+            ->where('c.status = :val')
+            ->setParameter('val', $statusRentail)
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getSingleScalarResult()
         ;
     }
-    */
-
 
 
 }
-// SELECT DISTINCT car.*, rentail.status FROM `car` RIGHT JOIN rentail on rentail.car_id = car.id where (rentail.status = 1)

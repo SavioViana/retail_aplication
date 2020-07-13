@@ -1,8 +1,70 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}Hello HomeController!{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+    <style>
+        .card-info {
+            
+        }
+
+        .card-info h5.card-title {
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 5px solid #007bff;
+        }
+        .card-info p.card-text {
+            font-size: 40px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
 
 {% block content %}
 
+
 <h1 class="text-center">SISTEMA PARA LOCAÇÃO DE CARROS</h1>
+
+<div class="row">
+    <div class="col-md-4 mb-5">
+        <div class="card card-info">
+            <div class="card-body">
+                <h5 class="card-title">Total de Clientes</h5>
+                <p class="card-text" >{{ clientQtd }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-info">
+            <div class="card-body">
+                <h5 class="card-title">Total de Carros</h5>
+                <p class="card-text" >{{ carQtd }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-info">
+            <div class="card-body">
+                <h5 class="card-title">Total de Carros Locados</h5>
+                <p class="card-text" >{{ carRentailQtd }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-info">
+            <div class="card-body">
+                <h5 class="card-title">Total de Carros Disponiveis</h5>
+                <p class="card-text" >{{ carNotRentailQtd }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
+
+
+

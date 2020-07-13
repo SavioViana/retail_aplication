@@ -32,6 +32,14 @@
             </tbody>
         </table>
 
+        <hr/>
+        <h5>Locações</h5>
+        <ul>
+            {% for retail in car.getRentails() %}
+                <li>{{ retail.getClient().name }} ( {{ retail.dateRentail|date('d-m-Y') }} ) </li>
+            {% endfor %}
+        </ul>
+
         <a href="{{ path('car_index') }}">Voltar para listagem</a>
 
         <a  class="btn btn-primary float-right ml-3"  href="{{ path('car_edit', {'id': car.id}) }}">Editar</a>

@@ -123,6 +123,7 @@ class Client
         return $this->rentails;
     }
 
+
     public function addRentail(Rentail $rentail): self
     {
         if (!$this->rentails->contains($rentail)) {

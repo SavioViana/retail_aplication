@@ -19,34 +19,6 @@ class RentailRepository extends ServiceEntityRepository
         parent::__construct($registry, Rentail::class);
     }
 
-    // /**
-    //  * @return Rentail[] Returns an array of Rentail objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Rentail
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 
     public function getStatusCar($value)
     {
@@ -63,6 +35,16 @@ class RentailRepository extends ServiceEntityRepository
             return 'Disponivel';
         }
         return count($qb);
+    }
+
+    public function getCurrentRentails($value)
+    {
+        return $this->createQueryBuilder('r')
+            ->where("r.client = :val")
+            ->andWhere("r.date_devolution is NULL")
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
     }
 
 }

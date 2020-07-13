@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Client;
+use App\Entity\Rentail;
 use App\Form\ClientType;
 use App\Repository\ClientRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/client")
@@ -59,8 +60,13 @@ class ClientController extends AbstractController
      */
     public function show(Client $client): Response
     {
+        $currentRentails = $this->getDoctrine()
+            ->getRepository(Rentail::class)
+            ->getCurrentRentails($client->getId());
+
         return $this->render('client/show.html.twig', [
             'client' => $client,
+            'currentRentails' => $currentRentails
         ]);
     }
 
